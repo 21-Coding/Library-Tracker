@@ -25,13 +25,13 @@ namespace Library
     {
       services.AddMvc();
 
-      // services.AddEntityFrameworkMySql()
-      //   .AddDbContext<LibraryContext>(options => options
-      //   .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
+      services.AddEntityFrameworkMySql()
+        .AddDbContext<LibraryContext>(options => options
+        .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
 
-      // services.AddIdentity<ApplicationUser, IdentityRole>()
-      //           .AddEntityFrameworkStores<LibraryContext>()
-      //           .AddDefaultTokenProviders();
+      services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<LibraryContext>()
+                .AddDefaultTokenProviders();
 
       services.Configure<IdentityOptions>(options =>
         {

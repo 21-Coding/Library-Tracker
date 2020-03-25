@@ -23,11 +23,11 @@ namespace Library.Controllers
 
     public ActionResult Index()
     {
-      // var bookList = _db.Books.Tolist();
-      return View();
+      List<Book> model = _db.Books.ToList();
+      return View(model);
     }
 
-    public ActionResult Create()
+    public ActionResult bCreate()
     {
       return View();
     }
@@ -64,8 +64,6 @@ namespace Library.Controllers
     {
       return View();
     }
-
-
 
 
   }
