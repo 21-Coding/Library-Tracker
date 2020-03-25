@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using RecipeBook.Models;
+using Library.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -18,11 +18,8 @@ namespace Library.Controllers
 
     public BooksController(LibraryContext db)
     {
-      _db = bd;
+      _db = db;
     }
-
-
-
 
     public ActionResult Index()
     {
@@ -45,7 +42,7 @@ namespace Library.Controllers
       return View();
     }
 
-    public ActionResult Edit(Book book)
+    public ActionResult Edit(int id)
     {
       return View();
     }
