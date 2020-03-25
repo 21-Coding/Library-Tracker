@@ -11,7 +11,7 @@
     <h3>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h3>
     <h3>Published Year: @Html.DisplayFor(model => model.PublishedYear)</h3>
 
-  @* @if(@Model.Authors.Count == 0)
+  @if(@Model.Authors.Count == 0)
     {
       <p>This Book does not belong to any Authors</p>
     }
@@ -20,7 +20,14 @@
         <ul>
         @foreach(var join in Model.Authors)
         {
-            <li>@join.Book.Title</li>
-            @using (Html.BeginForm)
-        } *@
+            <li>Authored By : @join.Author.Name</li>
+            @using (Html.BeginForm("DeleteAuthor", "Books"))
+            {
+              @Html.Hidden("joinId", @join.BookAuthorId)
+              <input type="submit" value="Delete" class="btn btn-danger">
+            }
+        }
 @await Html.PartialAsync("_Library-buttons")
+<div class="">
+  <button class="btn btn-primary">Check This Book Out</button>
+</div>

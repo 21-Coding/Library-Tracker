@@ -29,35 +29,68 @@ namespace Library.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Book book)
+    public ActionResult Create(Book book, int AuthorId)
     {
       _db.Books.Add(book);
+      if (AuthorId != 0)
+      {
+        _db.BookAuthor.Add(new BookAuthor() { AuthorId = AuthorId, BookId = book.BookId });
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      Book thisBook = _db.Books.FirstOrDefault(book => book.BookId == id);
+      Book thisBook = _db.Books
+      .Include(book => book.Authors)
+      .ThenInclude(join => join.Author)
+      .FirstOrDefault(book => book.BookId == id);
       return View(thisBook);
     }
 
     public ActionResult Edit(int id)
     {
-
-      Book thisBook = _db.Books.FirstOrDefault(book => book.BookId == id);
+      ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name");
+      Book thisBook = _db.Books
+      .Include(book => book.Authors)
+      .ThenInclude(join => join.Author)
+      .FirstOrDefault(book => book.BookId == id);
       return View(thisBook);
     }
 
 
     [HttpPost]
-    public ActionResult Edit(Book book)
+    public ActionResult Edit(Book book, int AuthorId)
     {
+      if (AuthorId != 0)
+      {
+        _db.BookAuthor.Add(new BookAuthor() { AuthorId = AuthorId, BookId = book.BookId });
+      }
       _db.Entry(book).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult AddAuthor(int id)
+    {
+      var thisBook = _db.Books.FirstOrDefault(book => book.BookId == id);
+      ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name");
+      return View(thisBook);
+    }
+
+    [HttpPost]
+    public ActionResult AddAuthor(Book book, int AuthorId)
+    {
+      if (AuthorId != 0)
+      {
+        _db.BookAuthor.Add(new BookAuthor() { AuthorId = AuthorId, BookId = book.BookId });
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -73,6 +106,15 @@ namespace Library.Controllers
     {
       Book thisBook = _db.Books.FirstOrDefault(book => book.BookId == id);
       _db.Books.Remove(thisBook);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteAuthor(int joinId)
+    {
+      var joinEntry = _db.BookAuthor.FirstOrDefault(entry => entry.BookAuthorId == joinId);
+      _db.BookAuthor.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

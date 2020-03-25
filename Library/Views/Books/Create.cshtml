@@ -9,13 +9,18 @@
         @using (Html.BeginForm())
         {
             <div class="form-group">
-                @Html.LabelFor(model => model.Title)
+                 <p>Title</p>
                 @Html.TextBoxFor(model => model.Title, new {@class="form-control"})
             </div>
             <div class="form-group">
                 <p>Published Year</p>
                 @* @Html.LabelFor(model => model.PublishedYear) *@
                 @Html.TextBoxFor(model => model.PublishedYear, new {@class="form-control"})
+            </div>
+            <div class="form-group">
+               
+                @Html.Label("Select Author")
+                @Html.DropDownList("AuthorId", null, new { @class="form-control"})
             </div>
 
             <button type="submit" class="btn btn-info btn-block"> Add a Book </button>

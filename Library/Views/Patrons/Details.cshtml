@@ -1,0 +1,12 @@
+@{
+    Layout = "_Layout";
+}
+@model Library.Models.Patron;
+
+<div class="row">
+<div class="col-md-8 offset-md-2">
+    
+    <h1>Patron Details<h1>
+    <hr>
+    <h3>@Html.DisplayNameFor(model => model.Name); @Html.DisplayFor(model => model.Name)</h3>
+
