@@ -27,7 +27,7 @@ namespace Library.Controllers
       return View(model);
     }
 
-    public ActionResult bCreate()
+    public ActionResult Create()
     {
       return View();
     }
@@ -35,16 +35,20 @@ namespace Library.Controllers
     [HttpPost]
     public ActionResult Create(Book book)
     {
-      return View();
+      _db.Books.Add(book);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      return View();
+      Book thisBook = _db.Books.FirstOrDefault(book => book.BookId == id);
+      return View(thisBook);
     }
 
     public ActionResult Edit(int id)
     {
+
       return View();
     }
 
@@ -64,7 +68,6 @@ namespace Library.Controllers
     {
       return View();
     }
-
 
   }
 }
