@@ -23,7 +23,7 @@ namespace Library.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.BookId = new SelectList(_db.Books, "BookId", "Name");
+      ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
       return View();
     }
 
@@ -51,7 +51,7 @@ namespace Library.Controllers
     public ActionResult Edit(int id)
     {
       var thisAuthor = _db.Authors.FirstOrDefault(authors => authors.AuthorId == id);
-      ViewBag.BookId = new SelectList(_db.Books, "BookId", "BookName");
+      ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
       return View(thisAuthor);
     }
 
@@ -70,7 +70,7 @@ namespace Library.Controllers
     public ActionResult AddBook(int id)
     {
       Author thisAuthor = _db.Authors.FirstOrDefault(authors => authors.AuthorId == id);
-      ViewBag.BookId = new SelectList(_db.Books, "BookId", "BookName");
+      ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
       return View(thisAuthor);
     }
 
