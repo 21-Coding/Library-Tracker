@@ -1,0 +1,19 @@
+@{
+    Layout = "_Layout";
+}
+@model Library.Models.Author;
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Author Create</h1>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name)
+                @Html.TextBoxFor(model => model.Name, new {@class="form-control"})
+            </div>
+
+            <button type="submit" class="btn btn-info btn-block"> Add a Book </button>
+        }
+    </div>
+</div>
