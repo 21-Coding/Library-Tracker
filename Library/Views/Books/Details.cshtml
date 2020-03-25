@@ -3,5 +3,23 @@
 }
 @model Library.Models.Book;
 
+<div class="row">
+<div class="col-md-8 offset-md-2">
 
-<h1>Book Details</h1>
+    <h1>Book Details</h1>
+    <hr>
+    <h3>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h3>
+    <h3>Published Year: @Html.DisplayFor(model => model.PublishedYear)</h3>
+
+  @* @if(@Model.Authors.Count == 0)
+    {
+      <p>This Book does not belong to any Authors</p>
+    }
+
+        <h3>Book the Author belongs to:</h3>
+        <ul>
+        @foreach(var join in Model.Authors)
+        {
+            <li>@join.Book.Title</li>
+            @using (Html.BeginForm)
+        } *@
