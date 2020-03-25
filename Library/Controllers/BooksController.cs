@@ -49,24 +49,32 @@ namespace Library.Controllers
     public ActionResult Edit(int id)
     {
 
-      return View();
+      Book thisBook = _db.Books.FirstOrDefault(book => book.BookId == id);
+      return View(thisBook);
     }
+
 
     [HttpPost]
     public ActionResult Edit(Book book)
     {
-      return View();
+      _db.Entry(book).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
 
     public ActionResult Delete(int id)
     {
-      return View();
+      Book thisBook = _db.Books.FirstOrDefault(book => book.BookId == id);
+      return View(thisBook);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      return View();
+      Book thisBook = _db.Books.FirstOrDefault(book => book.BookId == id);
+      _db.Books.Remove(thisBook);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
 
   }
