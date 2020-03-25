@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Library.Models;
+@model IEnumerable<Library.Models.Book>;
+@* 
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+
+    <h1 class="text-center">Books for @User.Identity.Name</h1>
+
+    @if (Model.Any())
+    {
+      <div class="list-group" id="list-tab" role="tablist">
+        @foreach (Book Book in Model)
+        {
+          <div class="list-group-item list-group-item-action">
+          @Html.ActionLink($"{Book.Title}", "Details", new { id = Book.BookId })
+          </div>
+        }
+      </div>
+    } 
+    else
+    { 
+      <h3>No Books have been added yet!</h3>
+    }
+
+    <p>@Html.ActionLink("Add new Book", "Create", null, null, new {@class="btn btn-info"})
+
+    @Html.ActionLink("Home", "Index", "Home", null, new {@class="btn btn-success"})</p> *@
+  </div>
+</div>

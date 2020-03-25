@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace Library.Models
+
 {
   public class Book
   {

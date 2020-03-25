@@ -23,6 +23,7 @@ namespace Library.Controllers
 
     public ActionResult Index()
     {
+      // var bookList = _db.Books.Tolist();
       return View();
     }
 
