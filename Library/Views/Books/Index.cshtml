@@ -17,7 +17,12 @@
       @foreach (Book book in Model)
       {
         <div class="list-group-item list-group-item-action">
-          📚 @Html.ActionLink($"{book.Title}", "Details", new { id = book.BookId })
+          📚 @Html.ActionLink($"{book.Title}", "Details", new { id = book.BookId }) 
+            @using (Html.BeginForm("AddTitle", "Patrons"))
+            {
+              @Html.Hidden("joinId", @book.BookId)
+              <input type="submit" value="Checkout" class="btn btn-info">
+            }
         </div>
       }
     </div>

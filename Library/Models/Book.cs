@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Library.Models
 
 {
-  public class Book : DbContext
+  public class Book
   {
     public Book()
     {
